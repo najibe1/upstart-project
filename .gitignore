@@ -1,0 +1,17 @@
+# DBT specific files
+dbt_modules/
+logs/
+target/
+
+# Python virtual environment
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# VSCode specific settings
+.vscode/
+
+# Environment variables or sensitive files
+.env
