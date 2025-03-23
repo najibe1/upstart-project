@@ -1,0 +1,31 @@
+version: '3'
+services:
+  airflow_gcp:
+    build: .
+    restart: always
+    env_file: 
+      - .env 
+    environment:
+      ENV_TYPE: "LOCAL"
+      ENABLE_ALERT_CALLBACK: "False"
+      AIRFLOW__CORE__EXECUTOR: SequentialExecutor
+      AIRFLOW__CORE__PLUGINS_FOLDER: /opt/airflow/plugins
+      AIRFLOW__CORE__XCOM_BACKEND: airflow.models.xcom.BaseXCom
+      AIRFLOW__WEBSERVER__NAVBAR_COLOR: "#d6c29f"
+      AIRFLOW__WEBSERVER__INSTANCE_NAME: "Development - Localhost"
+      AIRFLOW__LOGGING__REMOTE_LOGGING: "False"
+      AIRFLOW__METRICS__STATSD_ON: "False"
+      AIRFLOW__LINEAGE__BACKEND: ""
+      GOOGLE_APPLICATION_CREDENTIALS: ${GOOGLE_APPLICATION_CREDENTIALS}
+      GOOGLE_CLOUD_PROJECT: ${GOOGLE_CLOUD_PROJECT}
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./plugins:/opt/airflow/plugins
+      - ./data:/opt/airflow/data
+      - ./logs:/opt/airflow/logs
+      - ${GOOGLE_APPLICATION_CREDENTIALS}:${GOOGLE_APPLICATION_CREDENTIALS}:ro
+      - ./standalone_admin_password.txt:/opt/airflow/standalone_admin_password.txt
+    ports:
+      - "8080:8080"
+    command: standalone
+
