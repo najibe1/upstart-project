@@ -15,3 +15,12 @@ __pycache__/
 
 # Environment variables or sensitive files
 .env
+
+# Ignore Airflow-related files and folders
+/airflow/__pycache__/
+/airflow/airflow.db
+/airflow/standalone_admin_password.txt
+/airflow/airflow.cfg
+/airflow/webserver_config.py
+/airflow/airflow-webserver.pid
+/airflow/logs
