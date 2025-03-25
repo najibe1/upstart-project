@@ -14,19 +14,3 @@ __pycache__/
 
 # VSCode specific settings
 .vscode/
-
-# Environment variables or sensitive files
-.env
-
-# Airflow specific files
-/airflow/.git
-/airflow/.env
-/airflow/.DS_Store
-/airflow/airflow_settings.yaml
-/airflow/__pycache__/
-/airflow/astro
-/airflow/.venv
-/airflow/airflow-webserver.pid
-/airflow/webserver_config.py
-/airflow/airflow.cfg
-/airflow/airflow.db
