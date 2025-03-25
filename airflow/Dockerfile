@@ -1,21 +1,14 @@
-# Build arguments
-ARG AIRFLOW_VERSION=2.7.3
-ARG PYTHON_VERSION=3.11
+FROM quay.io/astronomer/astro-runtime:12.7.1
 
-# Use the Airflow image with specified Python version
-FROM --platform=linux/amd64 apache/airflow:${AIRFLOW_VERSION}-python${PYTHON_VERSION}
+USER root
 
-# Set PYTHONPATH for custom DAGs
-ENV PYTHONPATH="$PYTHONPATH:$AIRFLOW_HOME/dags"
+RUN apt update && \
+    apt-get install -y openjdk-17-jdk && \
+    apt-get install -y ant && \
+    apt-get clean;
 
-# Prevent PIP reinstall packages
-RUN mkdir ext
+# Set JAVA_HOME
+ENV JAVA_HOME /usr/lib/jvm/java-17-openjdk-arm64/
+RUN export JAVA_HOME
 
-# Upgrade pip to the latest version
-RUN pip install --no-cache-dir --upgrade pip
-
-# Copy requirements files into the container
-COPY requirements.txt ext/requirements.txt
-
-# Install the required packages 
-RUN pip install --user --no-cache-dir -r ext/requirements.txt
+USER astro
