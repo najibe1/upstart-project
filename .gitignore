@@ -1,7 +1,8 @@
 # DBT specific files
-dbt_modules/
-logs/
-target/
+/dbt/dbt_upstart/dbt_modules/
+/dbt/dbt_upstart/logs/
+/dbt/dbt_upstart/target/
+/dbt/dbt_upstart/dbt_packages/
 
 # Python virtual environment
 venv/
@@ -9,6 +10,7 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
+.DS_Store
 
 # VSCode specific settings
 .vscode/
@@ -16,11 +18,15 @@ __pycache__/
 # Environment variables or sensitive files
 .env
 
-# Ignore Airflow-related files and folders
+# Airflow specific files
+/airflow/.git
+/airflow/.env
+/airflow/.DS_Store
+/airflow/airflow_settings.yaml
 /airflow/__pycache__/
-/airflow/airflow.db
-/airflow/standalone_admin_password.txt
-/airflow/airflow.cfg
-/airflow/webserver_config.py
+/airflow/astro
+/airflow/.venv
 /airflow/airflow-webserver.pid
-/airflow/logs
+/airflow/webserver_config.py
+/airflow/airflow.cfg
+/airflow/airflow.db
